@@ -45,3 +45,10 @@ export const mockMoodHistory = [
   { day: 'Jue', valence: 0.9, energy: 0.9, mood: 'Eufórico' },
   { day: 'Vie', valence: 0.6, energy: 0.7, mood: 'Relajado' },
 ];
+
+export const mockTopGenres = [
+  { name: 'Art Pop', percentage: 45, color: '#1DB954' },
+  { name: 'Indie Rock', percentage: 25, color: '#8b5cf6' },
+  { name: 'Synthwave', percentage: 20, color: '#ec4899' },
+  { name: 'Otros', percentage: 10, color: '#6b7280' },
+];
