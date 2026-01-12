@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import Ticket from '@/components/Ticket'
 import { mockTopTracks, mockUserProfile } from '@/mocks/spotifyData'
+import CulturalExplorer from '@/components/CulturalExplorer'
 
 // Definimos la estructura de la canción para que TypeScript sea feliz
 interface Track {
@@ -62,13 +63,7 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="bg-[#181818] p-6 rounded-2xl border border-gray-800">
-            <h2 className="text-[#1DB954] font-bold mb-4 uppercase text-xs tracking-widest">🌍 Exploración</h2>
-            <p className="text-sm text-gray-400 mb-4 text-left">Descubre música del mundo.</p>
-            <button className="w-full py-3 bg-white text-black font-bold rounded-lg hover:bg-[#1DB954] transition-colors active:scale-95">
-              Girar Globo
-            </button>
-          </div>
+          <CulturalExplorer />
         </section>
 
         {/* Columna Central */}

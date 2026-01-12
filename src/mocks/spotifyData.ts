@@ -29,3 +29,11 @@ export const mockCountries = [
   { id: 'JP', name: 'Japón', genre: 'J-Pop', song: 'Stay with Me' },
   { id: 'BR', name: 'Brasil', genre: 'Bossa Nova', song: 'Garota de Ipanema' }
 ];
+
+export const mockCulturalData = [
+  { id: 'MX', country: 'México', genre: 'Mariachi / Regional', topArtist: 'Christian Nodal', energy: 0.85 },
+  { id: 'JP', country: 'Japón', genre: 'J-Pop / City Pop', topArtist: 'Miki Matsubara', energy: 0.70 },
+  { id: 'BR', country: 'Brasil', genre: 'Bossa Nova / Funk', topArtist: 'Anitta', energy: 0.90 },
+  { id: 'ES', country: 'España', genre: 'Flamenco Urbano', topArtist: 'Rosalía', energy: 0.80 },
+  { id: 'KR', country: 'Corea del Sur', genre: 'K-Pop', topArtist: 'NewJeans', energy: 0.95 }
+];
