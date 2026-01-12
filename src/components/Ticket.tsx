@@ -20,8 +20,6 @@ const Ticket = ({ tracks, styleType }: TicketProps) => {
   const downloadImage = () => {
     if (ticketRef.current === null) return;
 
-    const exportBgColor = styleType === 'neon' ? '#121212' : '#ffffff';
-
     // Generar fecha y hora para el nombre del archivo
     const ahora = new Date();
     const fechaStr = ahora.toLocaleDateString('es-ES').replace(/\//g, '-');
@@ -30,7 +28,8 @@ const Ticket = ({ tracks, styleType }: TicketProps) => {
 
     toPng(ticketRef.current, { 
       cacheBust: true,
-      backgroundColor: exportBgColor,
+      // IMPORTANTE: Quitamos el backgroundColor sólido aquí para que 
+      // el redondeado de las esquinas sea respetado sobre la transparencia.
       pixelRatio: 3,
       style: {
         transform: 'scale(1)',
@@ -38,7 +37,7 @@ const Ticket = ({ tracks, styleType }: TicketProps) => {
     })
       .then((dataUrl) => {
         const link = document.createElement('a');
-        link.download = nombreArchivo; // Nombre dinámico con fecha y hora
+        link.download = nombreArchivo;
         link.href = dataUrl;
         link.click();
       })
@@ -47,8 +46,9 @@ const Ticket = ({ tracks, styleType }: TicketProps) => {
 
   const themeStyles = {
     classic: "bg-white text-black border-t-[12px] border-x border-b border-dashed border-gray-300",
-    neon: "bg-[#121212] text-[#1DB954] border-2 border-[#1DB954] shadow-[0_0_15px_rgba(29,185,84,0.5)]",
-    minimal: "bg-gradient-to-b from-gray-50 to-gray-200 text-gray-800 rounded-3xl border border-gray-300"
+    // Agregamos overflow-hidden para asegurar el recorte de esquinas en la captura
+    neon: "bg-[#121212] text-[#1DB954] border-2 border-[#1DB954] shadow-[0_0_15px_rgba(29,185,84,0.5)] overflow-hidden",
+    minimal: "bg-gradient-to-b from-gray-50 to-gray-200 text-gray-800 rounded-3xl border border-gray-300 overflow-hidden"
   };
 
   return (
@@ -56,8 +56,8 @@ const Ticket = ({ tracks, styleType }: TicketProps) => {
       <div className="p-4"> 
         <div 
           ref={ticketRef} 
-          /* Corregido w-[350px] a w-87.5 para quitar advertencia */
-          className={`${themeStyles[styleType]} p-8 font-mono w-87.5 transition-all duration-500 flex flex-col`}
+          /* Agregamos overflow-hidden para forzar el redondeado en la exportación */
+          className={`${themeStyles[styleType]} p-8 font-mono w-87.5 transition-all duration-500 flex flex-col overflow-hidden`}
         >
           <h2 className="text-2xl font-black text-center mb-1 uppercase tracking-tighter italic">
             ECHOHUB RECEIPT
