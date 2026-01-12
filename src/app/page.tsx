@@ -17,6 +17,8 @@ interface Track {
 }
 
 export default function Home() {
+  // Estado para el diseño del ticket
+  const [ticketStyle, setTicketStyle] = useState<'classic' | 'neon' | 'minimal'>('classic');
   const [isLoading, setIsLoading] = useState(true);
   const [isSpinning, setIsSpinning] = useState(false);
   const [selectedTrack, setSelectedTrack] = useState<Track | null>(null);
@@ -25,7 +27,7 @@ export default function Home() {
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsLoading(false);
-    }, 2500); // 2.5 segundos de Splash Screen
+    }, 2500); 
     return () => clearTimeout(timer);
   }, []);
 
@@ -64,8 +66,28 @@ export default function Home() {
 
         {/* Columna 2 y 3: El Ticket (Protagonista Central) */}
         <section className="lg:col-span-2 flex flex-col items-center">
-           <h2 className="text-[#1DB954] font-bold mb-6 uppercase text-xs tracking-widest text-center">🎫 Tu Recibo Musical</h2>
-           <Ticket tracks={mockTopTracks} />
+           <h2 className="text-[#1DB954] font-bold mb-6 uppercase text-xs tracking-widest text-center">🎫 Personaliza tu Recibo</h2>
+           
+           {/* Selector de Estilos de Ticket */}
+           <div className="flex gap-4 mb-8 bg-black/40 p-1 rounded-full border border-white/5">
+             {(['classic', 'neon', 'minimal'] as const).map((style) => (
+               <button
+                 key={style}
+                 onClick={() => setTicketStyle(style)}
+                 className={`px-6 py-2 rounded-full text-[10px] font-black uppercase transition-all cursor-pointer ${
+                   ticketStyle === style 
+                     ? 'bg-[#1DB954] text-black shadow-lg shadow-[#1DB954]/20' 
+                     : 'text-gray-400 hover:text-white'
+                 }`}
+               >
+                 {style}
+               </button>
+             ))}
+           </div>
+
+           {/* Componente Ticket con la prop de estilo */}
+           <Ticket tracks={mockTopTracks} styleType={ticketStyle} />
+           
            <p className="mt-8 text-gray-500 text-[10px] uppercase tracking-[0.3em]">Scanned at EchoHub Terminal</p>
         </section>
 
