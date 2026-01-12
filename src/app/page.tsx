@@ -4,6 +4,7 @@ import { useState } from 'react';
 import Ticket from '@/components/Ticket'
 import { mockTopTracks, mockUserProfile } from '@/mocks/spotifyData'
 import CulturalExplorer from '@/components/CulturalExplorer'
+import MoodAnalyzer from '@/components/MoodAnalyzer'
 
 // Definimos la estructura de la canción para que TypeScript sea feliz
 interface Track {
@@ -46,24 +47,14 @@ export default function Home() {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         
         {/* Columna Izquierda */}
-        <section className="space-y-6">
-          <div className="bg-[#181818] p-6 rounded-2xl border border-gray-800 shadow-xl">
-            <h2 className="text-[#1DB954] font-bold mb-4 uppercase text-xs tracking-widest">🧠 Estado de Ánimo</h2>
-            <div className="flex items-end gap-2 h-20">
-              <div className="w-full bg-gray-800 h-full rounded-t-lg overflow-hidden flex flex-col justify-end">
-                <div className="bg-[#1DB954] w-full" style={{ height: '75%' }}></div>
-              </div>
-              <div className="w-full bg-gray-800 h-full rounded-t-lg overflow-hidden flex flex-col justify-end">
-                <div className="bg-purple-500 w-full" style={{ height: '45%' }}></div>
-              </div>
-            </div>
-            <div className="flex justify-between mt-2 text-[10px] text-gray-400">
-              <span>ENERGÍA</span>
-              <span>FELICIDAD</span>
-            </div>
+        <section className="space-y-6 flex flex-col">
+          <div className="flex-1">
+            <MoodAnalyzer />
           </div>
 
-          <CulturalExplorer />
+          <div className="flex-1">
+            <CulturalExplorer />
+          </div>
         </section>
 
         {/* Columna Central */}

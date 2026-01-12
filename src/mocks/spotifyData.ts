@@ -37,3 +37,11 @@ export const mockCulturalData = [
   { id: 'ES', country: 'España', genre: 'Flamenco Urbano', topArtist: 'Rosalía', energy: 0.80 },
   { id: 'KR', country: 'Corea del Sur', genre: 'K-Pop', topArtist: 'NewJeans', energy: 0.95 }
 ];
+
+export const mockMoodHistory = [
+  { day: 'Lun', valence: 0.4, energy: 0.6, mood: 'Melancólico' },
+  { day: 'Mar', valence: 0.7, energy: 0.8, mood: 'Enérgico' },
+  { day: 'Mié', valence: 0.2, energy: 0.3, mood: 'Triste' },
+  { day: 'Jue', valence: 0.9, energy: 0.9, mood: 'Eufórico' },
+  { day: 'Vie', valence: 0.6, energy: 0.7, mood: 'Relajado' },
+];
