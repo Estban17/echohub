@@ -18,6 +18,12 @@
 
   /* Animaciones personalizadas para la Ruleta */
   --transform-rotate-1080: 1080deg;
+
+  @keyframes loading {
+    0% { width: 0%; transform: translateX(-100%); }
+    50% { width: 70%; transform: translateX(20%); }
+    100% { width: 100%; transform: translateX(110%); }
+  }
 }
 
 /* Quitamos el media query de prefiere-color-scheme para forzar el modo oscuro de Spotify */

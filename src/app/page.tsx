@@ -1,11 +1,12 @@
 "use client";
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Ticket from '@/components/Ticket'
 import { mockTopTracks, mockUserProfile } from '@/mocks/spotifyData'
 import CulturalExplorer from '@/components/CulturalExplorer'
 import MoodAnalyzer from '@/components/MoodAnalyzer'
 import MusicProfile from '@/components/MusicProfile'
+import LoadingScreen from '@/components/LoadingScreen'
 
 interface Track {
   id: string;
@@ -16,8 +17,17 @@ interface Track {
 }
 
 export default function Home() {
+  const [isLoading, setIsLoading] = useState(true);
   const [isSpinning, setIsSpinning] = useState(false);
   const [selectedTrack, setSelectedTrack] = useState<Track | null>(null);
+
+  // Simular carga inicial
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 2500); // 2.5 segundos de Splash Screen
+    return () => clearTimeout(timer);
+  }, []);
 
   const girarRuleta = () => {
     setIsSpinning(true);
@@ -30,8 +40,10 @@ export default function Home() {
     }, 1500);
   };
 
+  if (isLoading) return <LoadingScreen />;
+
   return (
-    <main className="min-h-screen bg-[#121212] text-white p-4 md:p-10 font-sans">
+    <main className="min-h-screen bg-[#121212] text-white p-4 md:p-10 font-sans animate-in fade-in duration-1000">
       {/* Header */}
       <header className="flex justify-between items-center mb-12">
         <h1 className="text-3xl font-black text-[#1DB954] tracking-tighter italic">ECHOHUB</h1>
