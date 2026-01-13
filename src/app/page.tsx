@@ -1,5 +1,7 @@
 "use client";
 
+import { Analytics } from "@vercel/analytics/next"
+
 import { useState, useEffect } from 'react';
 import Ticket from '@/components/Ticket'
 import { mockTopTracks, mockUserProfile } from '@/mocks/spotifyData'
